@@ -8,5 +8,5 @@
 int main() {
   std::cout << "Hello World!\n";
 
-  EmployeeRecord employee;
+  EmployeeRecord* employee = new EmployeeRecord();
 }

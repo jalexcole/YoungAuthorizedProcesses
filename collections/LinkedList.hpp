@@ -8,7 +8,7 @@ class LinkedList {
 
   public:
     LinkedList() {
-      head = nullptr;
+      Node<T>* head = nullptr;
     }
     ~LinkedList();
 
@@ -18,26 +18,32 @@ class LinkedList {
     bool remove(T item);
 };
 
-template <typename T>
-T& LinkedList<T>::get(int index) {
-  if (index < size()) {
-    Node* node = &head;
-    if (head != nullptr) {
+// template <typename T>
+// T& LinkedList<T>::get(int index) {
+//   if (index < size()) {
+//     Node* node = &head;
+//     if (head != nullptr) {
 
-    }
-  }
-}
+//     }
+//   }
+
+//   return head.&T;
+// }
 
 template <typename T>
 bool LinkedList<T>::insert(T item, int index) {
-  newNode = new Node(item);
-  Node* current = &head;
-  Node* previous = nullptr;
+  Node<T>* newNode = new Node<T>(item);
+  Node<T>* current = head;
+  Node<T>* previous = nullptr;
 
-  while (current != nullptr && current->&item > index->&item) {
+
+  bool inserted = false; 
+  while (current != nullptr && current > newNode) {
     previous = current;
     current = current->next();
   }
+  
+  return inserted;
 }
 
 template <typename T>
@@ -54,5 +60,10 @@ int LinkedList<T>::size() {
 
     return size;
   } else return size;
+}
+
+template<typename T>
+LinkedList<T>::~LinkedList() {
+  
 }
 

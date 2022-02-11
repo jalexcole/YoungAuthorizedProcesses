@@ -15,8 +15,16 @@ class Node {
       nextNode = nullptr;
     }
 
+    ~Node() {
+      if (hasNext()) {
+        
+      }
+    }
+
     Node<T>* next();
     bool hasNext();
+
+    void set(T data);
 };
 
 template<typename T>
@@ -25,6 +33,11 @@ inline bool Node<T>::hasNext() {
 }
 
 template<typename T>
-Node<T>* Node<T>::next() {
+inline Node<T>* Node<T>::next() {
   return nextNode;
+}
+
+template<typename T>
+inline void Node<T>::set(T data) {
+  Node<T>::element = data;
 }
