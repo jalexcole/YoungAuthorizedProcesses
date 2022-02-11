@@ -44,5 +44,5 @@ class Store: public IComparable<Store> {
 		void setStoreZip(char *zip);
 		void printStoreInfo();			// Print all info on this store
 
-    virtual int compareTo(Store);
+    virtual int compareTo(Store*);
 };

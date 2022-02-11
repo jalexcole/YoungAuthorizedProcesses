@@ -2,10 +2,10 @@
 #include <list>
 
 #include "Store.h"
-#include "collections/LinkedList.hpp"
+
 class CustomerList {
-  std::list<Store>* stores;
-  LinkedList<Store>* storeList;
+  std::list<Store*> stores;
+  
   public:
     CustomerList();
     ~CustomerList();
@@ -16,3 +16,26 @@ class CustomerList {
     bool updateStore(int ID, char* name, char* address, char* city, char* street, char* zip);
     void printStoresInfo();
 };
+
+template<class T>
+class Node {
+  private:
+    T element;
+    Node* next;
+
+  public:
+    Node(T);
+    ~Node();
+    T getElement();
+    bool hasNext();
+
+};
+
+class OrderedLinkedList {
+  private:
+    Node<Store*> head;
+};
+
+
+
+

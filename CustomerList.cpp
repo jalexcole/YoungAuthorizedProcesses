@@ -5,7 +5,7 @@ CustomerList::CustomerList(void) {
 }
 
 CustomerList::~CustomerList() {
-  delete storeList;
+  
 }
 
 bool CustomerList::addStore(Store* store){
