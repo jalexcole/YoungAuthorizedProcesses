@@ -181,6 +181,16 @@ void Store::setStoreZip(char *zip)
 //------------------------------------------------------
 void Store::printStoreInfo()
 {
-	cout << m_iStoreID << setw(20) << m_sStoreName << setw(15) << m_sAddress
-		<< setw(15) << m_sCity << ", " << m_sState << setw(10) << m_sZip << "\n";
+	cout << m_iStoreID << setw(20) 
+       << m_sStoreName << setw(15) 
+       << m_sAddress << setw(15) 
+       << m_sCity << ", " 
+       << m_sState << setw(10) 
+       << m_sZip << "\n";
 }
+
+
+int Store::compareTo(Store e) {
+  return m_iStoreID > e.getStoreID();
+}
+

@@ -9,9 +9,11 @@ EmployeeRecord::EmployeeRecord(void) {
     strncpy(m_sLastName, "", sizeof(m_sLastName)); 
     m_iDeptID = 0;
     m_dSalary = 0.0;
+    m_pCustomerList = new CustomerList();
 }
 
 EmployeeRecord::EmployeeRecord(int _ID, char* _lname, char* _fname, int _dept, double _salary) {
+
     m_iEmployeeID = _ID;
     strncpy(m_sFirstName, _fname, sizeof(m_sFirstName));
     strncpy(m_sLastName, _lname, sizeof(m_sLastName)); 
@@ -20,7 +22,7 @@ EmployeeRecord::EmployeeRecord(int _ID, char* _lname, char* _fname, int _dept, d
 }
 
 EmployeeRecord::~EmployeeRecord() {
-  
+  delete m_pCustomerList;
 }
 
 int EmployeeRecord::getID() {
@@ -37,20 +39,20 @@ void EmployeeRecord::setName(char* _fname, char* _lname) {
 }
 
 void EmployeeRecord::getName(char* _fname, char* _lname) {
-    strncpy(_fname, m_sFirstName, sizeof());
-    strncpy(_lname, m_sLastName, sizeof(m_sLastName));
+    strncpy(_fname, m_sFirstName, sizeof(_fname));
+    strncpy(_lname, m_sLastName, sizeof(_lname));
 }
 
-void EmployeeRecord::getDept(int &_departmentID) {
-    _departmentID = m_iDeptID;
+int EmployeeRecord::getDept() {
+    return m_iDeptID;
 }
 
 void EmployeeRecord::setDept(int _departmentID) {
     m_iDeptID = _departmentID;
 }
 
-void EmployeeRecord::getSalary(double &_salary) {
-    _salary = m_dSalary;
+double EmployeeRecord::getSalary() {
+    return m_dSalary;
 }
 
 void EmployeeRecord::setSalary(double _salary) {

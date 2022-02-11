@@ -3,15 +3,14 @@
 // Class definition of a Store object for use in programming assignment 2.
 // Author: Dr. Rick Coleman
 //--------------------------------------------------------------------------
-#pragma once;
+#pragma once
 
 #include <string.h>
 #include <iostream>
-
+#include "collections/IComparable.hpp"
 using namespace std;
 
-class Store
-{
+class Store: public IComparable<Store> {
 	private:
 		int		m_iStoreID;
 		char	m_sStoreName[64];
@@ -44,4 +43,6 @@ class Store
 		char *getStoreZip();			// Get/Set store zip code
 		void setStoreZip(char *zip);
 		void printStoreInfo();			// Print all info on this store
+
+    virtual int compareTo(Store);
 };
