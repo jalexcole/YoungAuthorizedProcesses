@@ -13,7 +13,7 @@ class LinkedList {
     ~LinkedList();
 
     T get(int index);
-    bool insert(T item, int index);
+    bool insert(T item);
     int size();
     bool remove(T item);
 };
@@ -31,7 +31,7 @@ class LinkedList {
 // }
 
 template <typename T>
-bool LinkedList<T>::insert(T item, int index) {
+bool LinkedList<T>::insert(T item) {
   Node<T>* newNode = new Node<T>(item);
   Node<T>* current = head;
   Node<T>* previous = nullptr;

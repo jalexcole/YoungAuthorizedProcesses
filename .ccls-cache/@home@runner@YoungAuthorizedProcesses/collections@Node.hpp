@@ -15,11 +15,7 @@ class Node {
       nextNode = nullptr;
     }
 
-    ~Node() {
-      if (hasNext()) {
-        
-      }
-    }
+    ~Node();
 
     Node<T>* next();
     bool hasNext();
@@ -40,4 +36,21 @@ inline Node<T>* Node<T>::next() {
 template<typename T>
 inline void Node<T>::set(T data) {
   Node<T>::element = data;
+}
+
+template <typename T>
+inline Node<T>::~Node() {
+  if (hasNext()) {
+    if (nextNode->hasNext()) {
+      nextNode->~Node();
+    } else {
+      delete nextNode;
+    }
+  } else {
+    // if (std::is_pointer<T>) {
+    //   delete element;
+    // }
+  }
+
+
 }
