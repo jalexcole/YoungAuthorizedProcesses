@@ -1,0 +1,9 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/workspace/YoungAuthorizedProcesses'
+clang++ -g -Wno-everything -Wall -Wextra   -c -o CustomerList.o CustomerList.cpp
+clang++ -g -Wno-everything -Wall -Wextra   -c -o EmployeeRecord.o EmployeeRecord.cpp
+clang++ -g -Wno-everything -Wall -Wextra   -c -o Store.o Store.cpp
+clang++ -g -Wno-everything -Wall -Wextra   -c -o main.o main.cpp
+clang++ -g -Wno-everything -Wall -Wextra  ./CustomerList.o  ./EmployeeRecord.o  ./Store.o  ./main.o -o main
+make: Leaving directory '/workspace/YoungAuthorizedProcesses'
+ 

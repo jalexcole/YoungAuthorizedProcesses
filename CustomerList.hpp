@@ -1,11 +1,32 @@
 #pragma once
-#include <list>
+
 
 #include "Store.h"
 
+template<class T>
+class Node {
+  private:
+    T element;
+    Node* next;
+
+  public:
+    Node();
+    Node(T);
+    ~Node();
+    T getElement();
+    bool setElement(T element);
+    bool hasNext();
+    bool deleteNext();
+    Node* getNext();
+    void setNext(Node<T>*);
+    bool isEmpty();
+};
+
 class CustomerList {
-  std::list<Store*> stores;
+  // std::vector<Store*> stores;
   
+  Node<Store*>* stores;
+
   public:
     CustomerList();
     ~CustomerList();
@@ -17,24 +38,7 @@ class CustomerList {
     void printStoresInfo();
 };
 
-template<class T>
-class Node {
-  private:
-    T element;
-    Node* next;
 
-  public:
-    Node(T);
-    ~Node();
-    T getElement();
-    bool hasNext();
-
-};
-
-class OrderedLinkedList {
-  private:
-    Node<Store*> head;
-};
 
 
 
