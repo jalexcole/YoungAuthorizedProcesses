@@ -1,5 +1,6 @@
 #include "CustomerList.hpp"
 #include "Store.h"
+
 CustomerList::CustomerList(void) {
   stores = new Node<Store*>();
 }

@@ -3,6 +3,12 @@
 
 #include "Store.h"
 
+/**
+* @brief Create a node for holding an element in a list of elements.
+* @author Alex Cole
+* @param Struct type.
+*
+*/
 template<class T>
 class Node {
   private:
