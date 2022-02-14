@@ -190,13 +190,3 @@ void Store::printStoreInfo()
 }
 
 
-int Store::compareTo(Store* e) {
-  if (m_iStoreID > e->getStoreID()) {
-	  return 1;
-  } else if (m_iStoreID < e->getStoreID()) {
-	  return -1;
-  } else {
-	  return 0;
-  }
-}
-

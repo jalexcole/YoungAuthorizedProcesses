@@ -7,10 +7,10 @@
 
 #include <string.h>
 #include <iostream>
-#include "collections/IComparable.hpp"
+
 using namespace std;
 
-class Store: public IComparable<Store> {
+class Store {
 	private:
 		int		m_iStoreID;
 		char	m_sStoreName[64];
@@ -44,5 +44,4 @@ class Store: public IComparable<Store> {
 		void setStoreZip(char *zip);
 		void printStoreInfo();			// Print all info on this store
 
-    virtual int compareTo(Store*);
 };
