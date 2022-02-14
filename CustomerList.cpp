@@ -1,6 +1,7 @@
 #include "CustomerList.hpp"
 #include "Store.h"
 
+
 CustomerList::CustomerList(void) {
   stores = new Node<Store*>();
 }
@@ -119,6 +120,12 @@ Node<T>::Node() {
 }
 
 template<class T>
+Node<T>::Node(T t) {
+  this->element = t;
+  next = nullptr;
+}
+
+template<class T>
 Node<T>::~Node() {
   while (hasNext()) {
     next()->~Node();
@@ -153,4 +160,10 @@ bool Node<T>::isEmpty() {
 template <class T>
 T Node<T>::getElement() {
   return element;
+}
+
+template <class T>
+bool Node<T>::setElement(T element) {
+  this->element = element;
+  return true;
 }
