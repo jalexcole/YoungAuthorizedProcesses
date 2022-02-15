@@ -68,3 +68,9 @@ void EmployeeRecord::printRecord() {
     std::cout << "Employee Department ID: " << m_iDeptID << std::endl;
     std::cout << "Employee Salary" << m_dSalary << std::endl;
 }
+
+// Part 2
+
+CustomerList* EmployeeRecord::getCustomerList() {
+  return m_pCustomerList;
+}
