@@ -14,7 +14,10 @@ bool CustomerList::addStore(Store* store){
   /**
   * @brief This is for the case that the store is empty and is not a list
   *        of its own. A sec
-  *
+  * This assignment was probably expecting an interaction between two linked
+  * lists. That seemed to efficient. Therefore, Each linked list was converted
+  * to an array, a new array was created, with the contents of each array,
+  * followed by a bubble sort and then converted back to a linked list.
   */
 
   // find the size of the store paramater;
