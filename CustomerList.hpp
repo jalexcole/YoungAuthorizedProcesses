@@ -6,32 +6,15 @@
 /**
 * @brief Create a node for holding an element in a list of elements.
 * @author Alex Cole
-* @param Struct type.
-*
+* @param None type.
+* 
 */
-template<class T>
-class Node {
-  private:
-    T element;
-    Node* next;
 
-  public:
-    Node();
-    Node(T);
-    ~Node();
-    T getElement();
-    bool setElement(T element);
-    bool hasNext();
-    bool deleteNext();
-    Node* getNext();
-    void setNext(Node<T>*);
-    bool isEmpty();
-};
 
 class CustomerList {
   // std::vector<Store*> stores;
   
-  Node<Store*>* stores;
+  Store store; // Head of store list
 
   public:
     CustomerList();

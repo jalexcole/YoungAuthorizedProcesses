@@ -20,17 +20,6 @@ class EmployeeDatabase {
     void destoroTree(EmployeeRecordBT* recordTree);
 };
 
-template <class T>
-typedef struct BTNode {
-  T element;
-  Node<T>* left;
-  Node<T>* right;
-  Node<T>* parent;
-};
 
-template <class T>
-void _addNode(Node<T>* currentNode, Node<T> &newNode) {
-  
-}
 
 
