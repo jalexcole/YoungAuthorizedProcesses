@@ -202,9 +202,20 @@ Store* CustomerList::getStore(int ID) {
   return nullptr;
 }
 
-bool CustomerList::updateStore(int ID, char* name, char* address, char* city, char* street, char* zip) {
- 
- return false;
+bool CustomerList::updateStore(int ID, char* name, char* address, char* city, char* state, char* zip) {
+  Store* store = getStore(ID);
+  if (store == nullptr) {
+    return false;
+  }
+
+
+  // TODO: do some things to that store;
+  store->setStoreName(name);
+  store->setStoreCity(city);
+  store->setStoreState(state);
+  store->setStoreAddress(address);
+  store->setStoreZip(zip);
+  return false;
 }
 
 void CustomerList::printStoresInfo() {
