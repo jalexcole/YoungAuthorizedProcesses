@@ -160,7 +160,26 @@ bool CustomerList::addStore(Store* store){
 }
 
 Store* CustomerList::removeStore(int ID) {
-  
+  Store* temp = this->m_pHead;
+  Store* tempNext = this->m_pHead->m_pNext;
+
+
+  if (this->m_pHead->getStoreID() == ID) {
+    m_pHead = m_pHead->m_pNext;
+    return temp;
+  }
+
+  while (tempNext->m_pNext != NULL) {
+    if (tempNext->getStoreID() == ID) {
+      Store* continuation = tempNext->m_pNext;
+      temp->m_pNext = continuation;
+      
+      return tempNext; 
+    } else {
+      temp = tempNext;
+      tempNext = tempNext->m_pNext;
+    }
+  }
 
   return nullptr;
 }
