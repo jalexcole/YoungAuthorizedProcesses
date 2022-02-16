@@ -21,7 +21,7 @@ bool CustomerList::addStore(Store* store){
   int storeSize = 0;
 
   if (store == nullptr) {
-    // TODO: Flag do nothing
+    return false;
   } else if (store->m_pNext == nullptr) {
     storeSize++;
   } else {
@@ -46,7 +46,8 @@ bool CustomerList::addStore(Store* store){
   int thisSize = 0;
 
   if (this->m_pHead == NULL) {
-    // TODO: Flag do nothing
+    m_pHead = store;
+    return true;
   } else if (this->m_pHead->m_pNext == NULL) {
     thisSize++;
   } else {
