@@ -16,6 +16,101 @@ bool CustomerList::addStore(Store* store){
   *        of its own. A sec
   *
   */
+
+  // find the size of the store paramater;
+  int storeSize = 0;
+
+  if (store == nullptr) {
+    // TODO: Flag do nothing
+  } else if (store->m_pNext == nullptr) {
+    storeSize++;
+  } else {
+    Store* temp = store;
+    while (temp->m_pNext != nullptr) {
+      storeSize++;
+      temp = temp->m_pNext;
+    }
+  }
+
+  Store* storeArray[storeSize];
+
+  {
+    Store* temp = store;
+    for (int i= 0; i < storeSize; i++) {
+      storeArray[i] = temp;
+      temp = temp->m_pNext;
+    }
+  }
+  // Convert this to an array;
+
+  int thisSize = 0;
+
+  if (this->m_pHead == NULL) {
+    // TODO: Flag do nothing
+  } else if (this->m_pHead->m_pNext == NULL) {
+    thisSize++;
+  } else {
+    Store* temp = this->m_pHead;
+    while (temp->m_pNext != NULL) {
+      thisSize++;
+      temp = temp->m_pNext;
+    }
+  }
+  Store* thisArray[thisSize];
+  { 
+    Store* temp = this->m_pHead;
+    for (int i = 0; i < thisSize; i++) {
+      thisArray[i] = temp;
+      temp = temp->m_pNext;
+    }
+  }
+
+  
+
+  Store* outputArray[thisSize + storeSize];
+
+  for (int i = 0; i < thisSize; i++) {
+    outputArray[i] = thisArray[i];
+  }
+
+  for (int i = 0; i < storeSize; i++) {
+    outputArray[i + thisSize] = storeArray[i];
+  }
+
+  // Sort array with bubble sort;
+
+  int n = thisSize + storeSize;
+  bool swapped = false;
+
+  for (int i = 0; i < n -1; i++) {
+    swapped = false;
+    for (int j = 0; j < n-i-1; j++) {
+      if (outputArray[j]->getStoreID() > outputArray[j+1]->getStoreID()) {
+        // swap elements
+        Store* one = outputArray[j];
+        Store* two = outputArray[j+1];
+
+        outputArray[j] = two;
+        outputArray[j+1] = one;
+
+        swapped = true;
+      }
+    }
+    if (swapped == false) {
+      break;
+    }
+  }
+  
+  Store* newStoreList = outputArray[0];
+
+  Store* temp = newStoreList;
+  for (int i = 1; i < thisSize + storeSize; i++) {
+    temp->m_pNext = outputArray[i];
+    temp = temp->m_pNext;
+  }
+
+  this->m_pHead = newStoreList;
+  return true;
   // Case List is empyt
 
   
