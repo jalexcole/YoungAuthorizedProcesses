@@ -173,7 +173,7 @@ Store* CustomerList::removeStore(int ID) {
     if (tempNext->getStoreID() == ID) {
       Store* continuation = tempNext->m_pNext;
       temp->m_pNext = continuation;
-      
+
       return tempNext; 
     } else {
       temp = tempNext;
@@ -185,7 +185,19 @@ Store* CustomerList::removeStore(int ID) {
 }
 
 Store* CustomerList::getStore(int ID) {
-  
+  if (m_pHead == nullptr) {
+    return nullptr;
+  }
+
+  Store* temp = m_pHead;
+
+  while (temp->m_pNext != nullptr) {
+    if (temp->getStoreID() == ID) {
+      return temp;
+    } else {
+      temp = temp->m_pNext;
+    }
+  }
   
   return nullptr;
 }
