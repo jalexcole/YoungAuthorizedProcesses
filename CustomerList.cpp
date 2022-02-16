@@ -3,114 +3,93 @@
 
 
 CustomerList::CustomerList(void) {
-  stores = new Node<Store*>();
+  m_pHead = NULL;
 }
 
 CustomerList::~CustomerList() {
-  
+  delete m_pHead;
 }
 
 bool CustomerList::addStore(Store* store){
-  if (stores->isEmpty()) {
-    stores->setElement(store);
+  /**
+  * @brief This is for the case that the store is empty and is not a list
+  *        of its own. A sec
+  *
+  */
+  // Case List is empyt
+
+  
+  if (m_pHead == nullptr) {
+    m_pHead = store;
     return true;
-  }
 
-  int id = store->getStoreID();
+    // Case if list is single
+  } else  if (m_pHead->m_pNext == nullptr) {
+    if (store->getStoreID() > m_pHead->getStoreID()) {
+      m_pHead->m_pNext = store;
 
-  bool found = false;
-  Node<Store*>* currentNode = stores;
-  while (!found) {
-    if (currentNode->getElement()->getStoreID() > id) {
-      currentNode = stores->getNext();
+      return true;
     } else {
-      found = true;
-      Node<Store*>* newStoreNode= new Node<Store*>(store);
+      store->m_pNext = m_pHead;
+      m_pHead = store;
 
+      return true;
+    }
+  } else {
+    // If there are multiple elements in the list
+    Store* temp = m_pHead;
+    Store* tempNext = m_pHead->m_pNext;
 
-      // perform insertion
-      if (currentNode->hasNext()) {
-        newStoreNode->setNext(currentNode->getNext());
-        currentNode->setNext(newStoreNode);
-        return true;
+    // If the store needs to be listed at the front;
+    if (store->getStoreID() < temp->getStoreID()) {
+      store->m_pNext = temp;
+      m_pHead = store;
+    }
+    // If not inserting at the start of the list;
+    while(tempNext != nullptr) {
+      if(tempNext->getStoreID() < store->getStoreID()) {
+        temp = tempNext;
+        tempNext = tempNext->m_pNext;
       } else {
-        currentNode->setNext(newStoreNode);
+        // perform insertion
+        store->m_pNext = tempNext;
+        temp->m_pNext = store;
         return true;
       }
-      
     }
+    // if it is being added at the end of the list
+    tempNext->m_pNext = store;
+    return true;
   }
   return false;
 }
 
 Store* CustomerList::removeStore(int ID) {
-  Node<Store*>* currentNode = stores;
-  // Check if the head has the store id;
-  if (stores->getElement()->getStoreID() == ID) {
-    if (stores->hasNext()) {
-      stores = stores->getNext();
-      return currentNode->getElement();
-    }
-  }
-
-
-  while(currentNode->hasNext()) {
-    if (currentNode->getNext()->getElement()->getStoreID() == ID) {
-      Store* returnable = currentNode->getNext()->getElement();
-
-      if (currentNode->getNext()->hasNext()) {
-        currentNode->setNext(currentNode->getNext()->getNext());
-      } else {
-        currentNode->setNext(nullptr);
-      }
-      return returnable;
-    }
-  }
+  
 
   return nullptr;
 }
 
 Store* CustomerList::getStore(int ID) {
-  Node<Store*>* currentNode = stores;
   
-  if (stores == nullptr) {
-    return nullptr;
-  }
-
-  while(currentNode->hasNext()) {
-    if (currentNode->getElement()->getStoreID() == ID) {
-      return currentNode->getElement();
-    } else {
-      currentNode = currentNode->getNext();
-    }
-  }
+  
   return nullptr;
 }
 
 bool CustomerList::updateStore(int ID, char* name, char* address, char* city, char* street, char* zip) {
-  Store* store = getStore(ID);
-
-  if (store != nullptr) {
-    store->setStoreName(name);
-    store->setStoreAddress(address);
-    store->setStoreCity(city);
-    store->setStoreZip(zip);
-    return true;
-  }
-
-
-  return false;
+ 
+ return false;
 }
 
 void CustomerList::printStoresInfo() {
-  Node<Store*>* currentNode = stores;
+  Store* temp = m_pHead;
 
-  if (stores == nullptr) {
-    while (currentNode->hasNext()) {
-      currentNode->getElement()->printStoreInfo();
-      currentNode = currentNode->getNext();
-    }
+  while (temp != nullptr) {
+    temp->printStoreInfo();
+    temp = temp->m_pNext;
   }
+
+  temp = nullptr;
 
 }
 

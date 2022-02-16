@@ -13,8 +13,8 @@
 
 class CustomerList {
   // std::vector<Store*> stores;
-  
-  Store store; // Head of store list
+  private:
+    Store* m_pHead; // Head of store list
 
   public:
     CustomerList();
