@@ -3,11 +3,8 @@ make: Entering directory '/workspace/YoungAuthorizedProcesses'
 clang++ -g -Wno-everything -Wall -Wextra   -c -o CustomerList.o CustomerList.cpp
 clang++ -g -Wno-everything -Wall -Wextra   -c -o EmployeeDatabase.o EmployeeDatabase.cpp
 clang++ -g -Wno-everything -Wall -Wextra   -c -o EmployeeRecord.o EmployeeRecord.cpp
-clang++ -g -Wno-everything -Wall -Wextra   -c -o EmployeeRecordBT.o EmployeeRecordBT.cpp
 clang++ -g -Wno-everything -Wall -Wextra   -c -o Store.o Store.cpp
 clang++ -g -Wno-everything -Wall -Wextra   -c -o main.o main.cpp
-clang++ -g -Wno-everything -Wall -Wextra   -c -o test/CustomerListTest.o test/CustomerListTest.cpp
- 
-clang++ -g -Wno-everything -Wall -Wextra  ./CustomerList.o  ./EmployeeDatabase.o  ./EmployeeRecord.o  ./EmployeeRecordBT.o  ./Store.o  ./main.o  ./test/CustomerListTest.o -o main
+clang++ -g -Wno-everything -Wall -Wextra  ./CustomerList.o  ./EmployeeDatabase.o  ./EmployeeRecord.o  ./Store.o  ./main.o -o main
 make: Leaving directory '/workspace/YoungAuthorizedProcesses'
  

@@ -2,7 +2,7 @@
 #include "Store.h"
 
 
-CustomerList::CustomerList(void) {
+CustomerList::CustomerList() {
   m_pHead = NULL;
 }
 

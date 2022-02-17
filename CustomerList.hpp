@@ -12,7 +12,6 @@
 
 
 class CustomerList {
-  // std::vector<Store*> stores;
   private:
     Store* m_pHead; // Head of store list
 

@@ -18,6 +18,9 @@ public:
     EmployeeRecord(int ID, char *fname, char *IName, int dept, double sal);
     ~EmployeeRecord();
 
+    EmployeeRecord* m_pLeft;
+    EmployeeRecord* m_pRight;
+
     int getID();
     void setID(int);
     void getName(char *fName, char *IName);
@@ -31,4 +34,8 @@ public:
 
     // Part 2
     CustomerList* getCustomerList();
+
+    // Part 3
+    void removeCustomerList(void);
+    void destroyCustomerList(void); // deletes 
 };

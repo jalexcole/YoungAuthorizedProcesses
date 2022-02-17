@@ -1,23 +1,30 @@
 #pragma once
 
-#include "EmployeeRecordBT.hpp"
+#include <fstream>
+#include <iostream>
+#include "EmployeeRecord.hpp"
 
 class EmployeeDatabase {
-  EmployeeRecordBT m_pRoot;
+  EmployeeRecord m_pRoot;
+  // CustomerList* theList;
+  ifstream inFile;
+
+  bool getNextLine(char* line, int lineLen);
+
   public:
     EmployeeDatabase();
     ~EmployeeDatabase();
 
-    bool addEmployee(EmployeeRecordBT* empoyee);
-    EmployeeRecordBT* getEmployee(int ID);
-    EmployeeRecordBT* removeEmployee(int ID);
+    bool addEmployee(EmployeeRecord* empoyee);
+    EmployeeRecord* getEmployee(int ID);
+    EmployeeRecord* removeEmployee(int ID);
     void printEmployeeDatabase();
     bool buildDatabase(char* dataFile);
 
   private:
-    void printEmployeeRecords(EmployeeRecordBT* rt);
+    void printEmployeeRecords(EmployeeRecord* rt);
 
-    void destoroTree(EmployeeRecordBT* recordTree);
+    void destoroTree(EmployeeRecord* recordTree);
 };
 
 

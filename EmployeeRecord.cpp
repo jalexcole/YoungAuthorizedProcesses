@@ -9,7 +9,7 @@ EmployeeRecord::EmployeeRecord(void) {
     strncpy(m_sLastName, "", sizeof(m_sLastName)); 
     m_iDeptID = 0;
     m_dSalary = 0.0;
-    m_pCustomerList = new CustomerList();
+    // m_pCustomerList = new CustomerList();
 }
 
 EmployeeRecord::EmployeeRecord(int _ID, char* _lname, char* _fname, int _dept, double _salary) {
@@ -22,7 +22,7 @@ EmployeeRecord::EmployeeRecord(int _ID, char* _lname, char* _fname, int _dept, d
 }
 
 EmployeeRecord::~EmployeeRecord() {
-  delete m_pCustomerList;
+//   delete m_pCustomerList;
 }
 
 int EmployeeRecord::getID() {
@@ -72,5 +72,6 @@ void EmployeeRecord::printRecord() {
 // Part 2
 
 CustomerList* EmployeeRecord::getCustomerList() {
+    
   return m_pCustomerList;
 }
