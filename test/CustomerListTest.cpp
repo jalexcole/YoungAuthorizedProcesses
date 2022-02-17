@@ -13,7 +13,7 @@ void CustomerListTest::addStore() {
     customerList->addStore(store);
   } catch (const std::exception& e) {
     printf("Failed: CustomerListTest::addStore()\n");
-    printf(e.what());
+    // printf(e.what());
   }
 }
 
@@ -23,7 +23,7 @@ void CustomerListTest::getStore() {
     testStore = customerList->getStore(0);
   } catch (const std::exception& e) {
     printf("Failed: CustomerListTest::getStore()\n");
-    printf(e.what());
+    // printf(e.what());
   }
   testStore = nullptr;
 }

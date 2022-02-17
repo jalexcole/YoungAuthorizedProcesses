@@ -7,7 +7,21 @@ CustomerList::CustomerList(void) {
 }
 
 CustomerList::~CustomerList() {
-  delete m_pHead;
+  // delete m_pHead;
+}
+
+Store* getLast(Store* store) {
+  
+  if (store == nullptr) {
+    return nullptr;
+  } else if (store->m_pNext == nullptr) {
+    return store;
+  }
+
+  while (store->m_pNext != nullptr) {
+    store = store->m_pNext;
+  }
+  return store;
 }
 
 bool CustomerList::addStore(Store* store){
