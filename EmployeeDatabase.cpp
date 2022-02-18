@@ -80,6 +80,30 @@ std::list<EmployeeRecord*>* employeeToList(EmployeeRecord* employee) {
 
   return list;
 }
+// target must me a single node;
+bool insertEmployee(EmployeeRecord* source, EmployeeRecord* target) {
+  if (source == nullptr || target == nullptr) {
+    return false;
+  }
+
+  if (source->getID() < target->getID()) {
+    // add left;
+    if (source->m_pLeft != nullptr) {
+      insertEmployee(source->m_pLeft, target);
+    } else {
+      source->m_pLeft = target;
+      return true;
+    }
+  } else {
+    if (source->m_pRight != nullptr) {
+      insertEmployee(source->m_pRight, target);
+    } else {
+      source->m_pRight = target;
+      return true;
+    }
+  }
+  return false;
+}
 
 bool EmployeeDatabase::addEmployee(EmployeeRecord* employee) {
   // Determine if the employeee is a single employee
@@ -87,12 +111,24 @@ bool EmployeeDatabase::addEmployee(EmployeeRecord* employee) {
 
   if (single(employee)) {
     // add to tree;
+    return insertEmployee(&m_pRoot, employee);
+
   } else {
     // parse into list and then add back into tree;
     std::list<EmployeeRecord*>* employees = employeeToList(employee);
 
-    
+    while (!employees->empty()) {
+      // traverse tree to add each employee;
+      EmployeeRecord* employeefromList = employees->front();
 
+      employeefromList->m_pLeft = nullptr;
+      employeefromList->m_pRight = nullptr;
+      
+      insertEmployee(&m_pRoot, employeefromList);
+
+      employees->pop_front();
+    }
+    delete employees;
 
   }
   return false;
