@@ -1,4 +1,5 @@
 #include "EmployeeDatabase.hpp"
+#include "EmployeeRecord.hpp"
 #include "string.h"
 #include <cstdio>
 #include <cstdlib>
@@ -9,33 +10,6 @@
 
 #include "CustomerList.hpp"
 
-enum employeeInfo{
-  ID = 0,
-  FIRST_NAME = 1,
-  LAST_NAME = 2,
-  DEPARTMENT = 3,
-  SALARY = 4,
-  STOP = 5
-};
-
-enum StoreReadState {
-  
-};
-
-enum ReadStatus {
-  Employee = 1,
-  CustomerList = 2,
-  Comment = 0
-};
-
-
-EmployeeDatabase::EmployeeDatabase() {
-
-}
-
-EmployeeDatabase::~EmployeeDatabase() {
-
-}
 
 bool single(EmployeeRecord* employee) {
   if (employee->m_pLeft == nullptr && employee->m_pRight == nullptr) {
@@ -70,6 +44,8 @@ std::list<EmployeeRecord*>* employeeToList(EmployeeRecord* employee) {
     temp = tempNext;
     tempNext = new std::list<EmployeeRecord*>();
   }
+
+  // release resources
   if (temp != nullptr) {
     delete temp;
   }
@@ -134,18 +110,79 @@ bool EmployeeDatabase::addEmployee(EmployeeRecord* employee) {
   return false;
 }
 
+// recursivly find the employee by id;
+EmployeeRecord* findEmployeeById(EmployeeRecord* employee, int id) {
+  if (employee->getID() == id) {
+    return employee;
+  } else if (employee->getID() < id) {
+    if (employee->m_pLeft == nullptr) {
+      return nullptr;
+    }
+    return findEmployeeById(employee->m_pLeft, id);
+  } else {
+    if (employee->m_pRight == nullptr) {
+      return nullptr;
+    }
+    return findEmployeeById(employee->m_pRight, id);
+  }
+}
+
 EmployeeRecord* EmployeeDatabase::getEmployee(int ID) {
-  return nullptr;
+  return findEmployeeById(&m_pRoot, ID);
 }
 
 EmployeeRecord* EmployeeDatabase::removeEmployee(int ID) {
+  // find the employee
+  EmployeeRecord* employee = findEmployeeById(&m_pRoot, ID);
+  if (employee == nullptr) {
+    return nullptr;
+  }
+  // index childeren of employee
+  EmployeeRecord* left = employee->m_pLeft;
+  EmployeeRecord* right = employee->m_pRight;
 
+  // find parent node of employee;
+  EmployeeRecord* parent = &m_pRoot;
 
-  return nullptr;
+  bool found = false;
+
+  while (!found) {
+    if (parent->m_pLeft == employee) {
+      found = true;
+      break;
+    } else if (parent->m_pRight == employee) {
+      found = true;
+      break;
+    }
+
+    if (parent->getID() > ID) {
+      parent = parent->m_pLeft;
+    } else {
+      parent = parent->m_pRight;
+    }
+  }
+
+  if (parent->m_pRight == employee) {
+    parent->m_pRight = nullptr;
+    if (left != nullptr) {
+      addEmployee(left);
+
+    }
+    if (right != nullptr) {
+      addEmployee(right);
+    }
+  }
+  return employee;
 }
 
 void EmployeeDatabase::printEmployeeRecords(EmployeeRecord* record) {
+  std::list<EmployeeRecord*>* employees = employeeToList(record);
 
+  while (!employees->empty()){
+    EmployeeRecord* employeeFromList = employees->front();
+    employeeFromList->printRecord();
+    employees->pop_front();
+  }
 }
 
 //-----------------------------------------------------
