@@ -1,11 +1,12 @@
 #include <iostream>
-
+#include <memory>
 #include "EmployeeRecord.hpp"
 #include "Store.h"
 #include "CustomerList.hpp"
 #include "EmployeeDatabase.hpp"
 #include <vector>
 #include <string>
+#include <list>
 
 void testEmployeeRecord(void);
 void testSotreList(void);
@@ -73,18 +74,28 @@ int main() {
 
 void testCustomerList() {
   std::cout << "Constructing Test CustomerList" << std::endl;
-  CustomerList* customerList = new CustomerList();
+  unique_ptr<CustomerList> customerList(new CustomerList);
+  std::list<Store*> stores;
 
+  for (int i = 0; i < 10; i++) {
+    Store* store = new Store();
+    store->setStoreID(i);
+    stores.push_back(store);
+  }
 
-
-  delete customerList;
+  while (!stores.empty()) {
+    customerList->addStore(stores.front());
+    stores.pop_front();
+  }
+  
+  // delete customerList;
 }
 
 void testEmployeeDatabase(void) {
   std::cout << "Running Test For Employee DataBase" << std::endl;
   std::string dataFile = "Program3Data.txt";
   EmployeeDatabase* employeeDatabase = new EmployeeDatabase();
-  employeeDatabase->buildDatabase(dataFile.c_str());
+  // employeeDatabase->buildDatabase(dataFile.c_str());
   //employeeDatabase->printEmployeeDatabase();
 
   delete employeeDatabase;

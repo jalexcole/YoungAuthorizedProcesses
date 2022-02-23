@@ -130,16 +130,17 @@ bool sortListByID(Store* store) {
     }
     if (swapped == false) {
       store = storeArrayToList(storeArray);
+      return true;
       break;
     }
   }
-
+  return false;
 }
 
 Store* getLastStore(Store* store) {
   Store* temp = store;
 
-  while (store->m_pNext != nullptr) {
+  while (temp->m_pNext != nullptr) {
     temp = temp->m_pNext;
   }
 
@@ -163,151 +164,154 @@ bool CustomerList::addStore(Store *store) {
   store->printStoreInfo();
 
   // If Store is single add store to current list;
-  if (!(m_pHead != nullptr)) {
+  if (m_pHead == nullptr) {
     std::cout << "Adding store as head of the list" << std::endl;
+
     m_pHead = store;
 
-    if (!storeSingle(m_pHead)) {
-      sortListByID(m_pHead);
-    }
+    // if (!storeSingle(m_pHead)) {
+    //   sortListByID(m_pHead);
+    // }
     return true;
   }
 
   if (storeSingle(store)) {
     std::cout << "Store is single" << std::endl;
+    getLastStore(m_pHead)->printStoreInfo();
     getLastStore(m_pHead)->m_pNext = store;
 
     sortListByID(m_pHead);
     return true;
   } 
 
-
-
-  int storeSize = storeListSize(store);
-
-  Store *storeArray[storeSize];
-
-  {
-    Store *temp = store;
-    for (int i = 0; i < storeSize; i++) {
-      storeArray[i] = temp;
-      temp = temp->m_pNext;
-    }
-  }
-  // Convert this to an array;
-
-  int thisSize = 0;
-
-  if (this->m_pHead == NULL) {
-    m_pHead = store;
-    return true;
-  } else if (this->m_pHead->m_pNext == NULL) {
-    thisSize++;
-  } else {
-    Store *temp = this->m_pHead;
-    while (temp->m_pNext != NULL) {
-      thisSize++;
-      temp = temp->m_pNext;
-    }
-  }
-  Store *thisArray[thisSize];
-  {
-    Store *temp = this->m_pHead;
-    for (int i = 0; i < thisSize; i++) {
-      thisArray[i] = temp;
-      temp = temp->m_pNext;
-    }
-  }
-
-  Store *outputArray[thisSize + storeSize];
-
-  for (int i = 0; i < thisSize; i++) {
-    outputArray[i] = thisArray[i];
-  }
-
-  for (int i = 0; i < storeSize; i++) {
-    outputArray[i + thisSize] = storeArray[i];
-  }
-
-  // Sort array with bubble sort;
-
-  int n = thisSize + storeSize;
-  bool swapped = false;
-
-  for (int i = 0; i < n - 1; i++) {
-    swapped = false;
-    for (int j = 0; j < n - i - 1; j++) {
-      if (outputArray[j]->getStoreID() > outputArray[j + 1]->getStoreID()) {
-        // swap elements
-        Store *one = outputArray[j];
-        Store *two = outputArray[j + 1];
-
-        outputArray[j] = two;
-        outputArray[j + 1] = one;
-
-        swapped = true;
-      }
-    }
-    if (swapped == false) {
-      break;
-    }
-  }
-
-  Store *newStoreList = outputArray[0];
-
-  Store *temp = newStoreList;
-  for (int i = 1; i < thisSize + storeSize; i++) {
-    temp->m_pNext = outputArray[i];
-    temp = temp->m_pNext;
-  }
-
-  this->m_pHead = newStoreList;
+  getLast(m_pHead)->m_pNext = store;
   return true;
-  // Case List is empyt
 
-  if (m_pHead == nullptr) {
-    m_pHead = store;
-    return true;
+  // int storeSize = storeListSize(store);
 
-    // Case if list is single
-  } else if (m_pHead->m_pNext == nullptr) {
-    if (store->getStoreID() > m_pHead->getStoreID()) {
-      m_pHead->m_pNext = store;
+  // Store *storeArray[storeSize];
 
-      return true;
-    } else {
-      store->m_pNext = m_pHead;
-      m_pHead = store;
+  // {
+  //   Store *temp = store;
+  //   for (int i = 0; i < storeSize; i++) {
+  //     storeArray[i] = temp;
+  //     temp = temp->m_pNext;
+  //   }
+  // }
+  // // Convert this to an array;
 
-      return true;
-    }
-  } else {
-    // If there are multiple elements in the list
-    Store *temp = m_pHead;
-    Store *tempNext = m_pHead->m_pNext;
+  // int thisSize = 0;
 
-    // If the store needs to be listed at the front;
-    if (store->getStoreID() < temp->getStoreID()) {
-      store->m_pNext = temp;
-      m_pHead = store;
-    }
-    // If not inserting at the start of the list;
-    while (tempNext != nullptr) {
-      if (tempNext->getStoreID() < store->getStoreID()) {
-        temp = tempNext;
-        tempNext = tempNext->m_pNext;
-      } else {
-        // perform insertion
-        store->m_pNext = tempNext;
-        temp->m_pNext = store;
-        return true;
-      }
-    }
-    // if it is being added at the end of the list
-    tempNext->m_pNext = store;
-    return true;
-  }
-  return false;
+  // if (this->m_pHead == NULL) {
+  //   m_pHead = store;
+  //   return true;
+  // } else if (this->m_pHead->m_pNext == NULL) {
+  //   thisSize++;
+  // } else {
+  //   Store *temp = this->m_pHead;
+  //   while (temp->m_pNext != NULL) {
+  //     thisSize++;
+  //     temp = temp->m_pNext;
+  //   }
+  // }
+  // Store *thisArray[thisSize];
+  // {
+  //   Store *temp = this->m_pHead;
+  //   for (int i = 0; i < thisSize; i++) {
+  //     thisArray[i] = temp;
+  //     temp = temp->m_pNext;
+  //   }
+  // }
+
+  // Store *outputArray[thisSize + storeSize];
+
+  // for (int i = 0; i < thisSize; i++) {
+  //   outputArray[i] = thisArray[i];
+  // }
+
+  // for (int i = 0; i < storeSize; i++) {
+  //   outputArray[i + thisSize] = storeArray[i];
+  // }
+
+  // // Sort array with bubble sort;
+
+  // int n = thisSize + storeSize;
+  // bool swapped = false;
+
+  // for (int i = 0; i < n - 1; i++) {
+  //   swapped = false;
+  //   for (int j = 0; j < n - i - 1; j++) {
+  //     if (outputArray[j]->getStoreID() > outputArray[j + 1]->getStoreID()) {
+  //       // swap elements
+  //       Store *one = outputArray[j];
+  //       Store *two = outputArray[j + 1];
+
+  //       outputArray[j] = two;
+  //       outputArray[j + 1] = one;
+
+  //       swapped = true;
+  //     }
+  //   }
+  //   if (swapped == false) {
+  //     break;
+  //   }
+  // }
+
+  // Store *newStoreList = outputArray[0];
+
+  // Store *temp = newStoreList;
+  // for (int i = 1; i < thisSize + storeSize; i++) {
+  //   temp->m_pNext = outputArray[i];
+  //   temp = temp->m_pNext;
+  // }
+
+  // this->m_pHead = newStoreList;
+  // return true;
+  // // Case List is empyt
+
+  // if (m_pHead == nullptr) {
+  //   m_pHead = store;
+  //   return true;
+
+  //   // Case if list is single
+  // } else if (m_pHead->m_pNext == nullptr) {
+  //   if (store->getStoreID() > m_pHead->getStoreID()) {
+  //     m_pHead->m_pNext = store;
+
+  //     return true;
+  //   } else {
+  //     store->m_pNext = m_pHead;
+  //     m_pHead = store;
+
+  //     return true;
+  //   }
+  // } else {
+  //   // If there are multiple elements in the list
+  //   Store *temp = m_pHead;
+  //   Store *tempNext = m_pHead->m_pNext;
+
+  //   // If the store needs to be listed at the front;
+  //   if (store->getStoreID() < temp->getStoreID()) {
+  //     store->m_pNext = temp;
+  //     m_pHead = store;
+  //   }
+  //   // If not inserting at the start of the list;
+  //   while (tempNext != nullptr) {
+  //     if (tempNext->getStoreID() < store->getStoreID()) {
+  //       temp = tempNext;
+  //       tempNext = tempNext->m_pNext;
+  //     } else {
+  //       // perform insertion
+  //       store->m_pNext = tempNext;
+  //       temp->m_pNext = store;
+  //       return true;
+  //     }
+  //   }
+  //   // if it is being added at the end of the list
+  //   tempNext->m_pNext = store;
+  //   return true;
+  // }
+  // return false;
 }
 
 /**
