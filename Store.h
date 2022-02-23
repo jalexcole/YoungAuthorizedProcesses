@@ -20,7 +20,7 @@ class Store {
 		char	m_sZip[11];
 
 	public:
-		Store	*m_pNext;
+		Store* m_pNext;
 
 		Store();						// Default constructor
 		Store(int ID,					// Constructor

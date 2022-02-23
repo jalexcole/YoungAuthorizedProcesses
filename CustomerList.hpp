@@ -9,8 +9,6 @@
 * @param None type.
 * 
 */
-
-
 class CustomerList {
   private:
     Store* m_pHead; // Head of store list

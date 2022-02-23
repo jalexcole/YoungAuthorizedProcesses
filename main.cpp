@@ -2,12 +2,16 @@
 
 #include "EmployeeRecord.hpp"
 #include "Store.h"
-// #include "CustomerList.hpp"
-
+#include "CustomerList.hpp"
+#include "EmployeeDatabase.hpp"
 #include <vector>
+#include <string>
 
-
-
+void testEmployeeRecord(void);
+void testSotreList(void);
+void testEmployeeDatabase(void);
+void testStore(void);
+void testCustomerList();
 
 Store* getmyLast(Store* store) {
   
@@ -23,32 +27,65 @@ Store* getmyLast(Store* store) {
   return store;
 }
 
-int main() {
-  std::cout << "Hello World!\n";
-
-  std::vector<Store*> stores;
+void testSotreList() {
+  std::vector<Store *> stores;
   // Store* store = new Store();
   for (int i = 0; i < 10; i++) {
-    Store* store = new Store();
+    Store *store = new Store();
     store->setStoreID(i);
 
     stores.push_back(store);
-  } 
-  Store* head = stores[0];
+  }
+  Store *head = stores[0];
 
   for (int i = 0; i < stores.size(); i++) {
-     stores[i]->printStoreInfo();
+    stores[i]->printStoreInfo();
   }
 
-  Store* temp = head;
+  Store *temp = head;
 
   for (int i = 1; i < stores.size(); i++) {
     temp->m_pNext = stores[i];
     temp = temp->m_pNext;
   }
 
-  Store* lastStore = getmyLast(head);
+  Store *lastStore = getmyLast(head);
   lastStore->printStoreInfo();
+
+  for (int i = stores.size(); i > 0; --i) {
+    delete stores[i];
+  }
 }
 
 
+int main() {
+  std::cout << "Hello World!\n";
+  std::cout << "Testing CustomerList" << std::endl;
+  testSotreList();
+  testCustomerList();
+  std::cout << "CustomerList testing complete" << std::endl;
+
+  std::cout << "Testing EmployeeDatabase" << std::endl;
+  testEmployeeDatabase();
+  
+  return 0;
+}
+
+void testCustomerList() {
+  std::cout << "Constructing Test CustomerList" << std::endl;
+  CustomerList* customerList = new CustomerList();
+
+
+
+  delete customerList;
+}
+
+void testEmployeeDatabase(void) {
+  std::cout << "Running Test For Employee DataBase" << std::endl;
+  std::string dataFile = "Program3Data.txt";
+  EmployeeDatabase* employeeDatabase = new EmployeeDatabase();
+  employeeDatabase->buildDatabase(dataFile.c_str());
+  //employeeDatabase->printEmployeeDatabase();
+
+  delete employeeDatabase;
+}
