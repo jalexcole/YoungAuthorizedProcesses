@@ -11,7 +11,7 @@ EmployeeRecord::EmployeeRecord(void) {
     strcpy(m_sLastName, ""); 
     m_iDeptID = 0;
     m_dSalary = 0.0;
-    // m_pCustomerList = new CustomerList();
+    m_pCustomerList = new CustomerList();
 }
 
 /**
@@ -37,7 +37,7 @@ EmployeeRecord::EmployeeRecord(int _ID, char* _lname, char* _fname, int _dept, d
  * 
  */
 EmployeeRecord::~EmployeeRecord() {
-//   delete m_pCustomerList;
+   delete m_pCustomerList;
 }
 
 /**
