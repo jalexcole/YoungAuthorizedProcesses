@@ -371,3 +371,13 @@ bool EmployeeDatabase::getNextLine(char *line, int lineLen) {
   } // end while
   return false;
 }
+
+void EmployeeDatabase::destroyTree(EmployeeRecord* rt) {
+  std::list<EmployeeRecord*>* list = employeeToList(rt);
+  while (!list->empty()) {
+    EmployeeRecord* record = list->front();
+    list->pop_front();
+    delete record;
+  }
+  delete list;
+}

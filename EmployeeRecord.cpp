@@ -132,6 +132,18 @@ void EmployeeRecord::printRecord() {
 // Part 2
 
 CustomerList* EmployeeRecord::getCustomerList() {
-    
-  return m_pCustomerList;
+    if (m_pCustomerList) {
+        return m_pCustomerList;
+    } else {
+        m_pCustomerList = new CustomerList();
+        return m_pCustomerList;
+    }
+}
+
+void EmployeeRecord::removeCustomerList() {
+    m_pCustomerList = nullptr;
+}
+
+void EmployeeRecord::destroyCustomerList() {
+    delete m_pCustomerList;
 }
