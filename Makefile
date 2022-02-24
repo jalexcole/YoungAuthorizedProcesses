@@ -1,4 +1,4 @@
-CXX = clang++
+CXX = g++
 override CXXFLAGS += -g -Wno-everything -Wall -Wextra -pedantic -Og
 
 SRCS = $(shell find . -name '.ccls-cache' -type d -prune -o -type f -name '*.cpp' -print)

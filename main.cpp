@@ -15,11 +15,17 @@ void testStore(void);
 void testCustomerList();
 
 Store* getmyLast(Store* store) {
-  
+  std::cout << "Getting tail of store list" << std::endl;
   if (store == nullptr) {
+    std::cout << "store is a nullptr" << std::endl;
     return nullptr;
   } else if (store->m_pNext == nullptr) {
+    std::cout << "Store is a single unit" << std::endl;
+    store->printStoreInfo();
     return store;
+  } else {
+    std::cout << "Entering Recursion" << std::endl;
+    return getmyLast(store->m_pNext);
   }
 
   while (store->m_pNext != nullptr) {
@@ -45,7 +51,7 @@ void testSotreList() {
 
   Store *temp = head;
 
-  for (int i = 1; i < stores.size(); i++) {
+  for (int i = 1; (int) i < stores.size(); i++) {
     temp->m_pNext = stores[i];
     temp = temp->m_pNext;
   }
@@ -61,10 +67,10 @@ void testSotreList() {
 
 int main() {
   std::cout << "Hello World!\n";
-  std::cout << "Testing CustomerList" << std::endl;
-  testSotreList();
-  testCustomerList();
-  std::cout << "CustomerList testing complete" << std::endl;
+  // std::cout << "Testing CustomerList" << std::endl;
+  // testSotreList();
+  // testCustomerList();
+  // std::cout << "CustomerList testing complete" << std::endl;
 
   std::cout << "Testing EmployeeDatabase" << std::endl;
   testEmployeeDatabase();
@@ -95,7 +101,7 @@ void testEmployeeDatabase(void) {
   std::cout << "Running Test For Employee DataBase" << std::endl;
   std::string dataFile = "Program3Data.txt";
   EmployeeDatabase* employeeDatabase = new EmployeeDatabase();
-  // employeeDatabase->buildDatabase(dataFile.c_str());
+  employeeDatabase->buildDatabase(dataFile.c_str());
   //employeeDatabase->printEmployeeDatabase();
 
   delete employeeDatabase;

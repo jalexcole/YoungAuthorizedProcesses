@@ -330,12 +330,14 @@ bool EmployeeDatabase::buildDatabase(const char *dataFile) {
       theStore = new Store(sID, sName, sAddr, sCity, sSt, sZip);
       
       std::cout << "EmployeeDatabase::buildDataBase() adding new Store to list" << std::endl;
+      theStore->printStoreInfo();
       theList->addStore(theStore);
 
       std::cout << "EmoloyeeDatabase::buildDatabase() printing store info" << std::endl;
       theList->printStoresInfo(); // For Debugging
     }
     cout.flush();
+    std::cout << "Adding Employee to Employee database" << std::endl;
     addEmployee(empRec);
   }
   inFile.close();
