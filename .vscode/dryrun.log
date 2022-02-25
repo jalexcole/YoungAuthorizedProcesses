@@ -1,10 +1,8 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory '/workspace/YoungAuthorizedProcesses'
-clang++ -g -Wno-everything -Wall -Wextra   -c -o CustomerList.o CustomerList.cpp
-clang++ -g -Wno-everything -Wall -Wextra   -c -o EmployeeDatabase.o EmployeeDatabase.cpp
-clang++ -g -Wno-everything -Wall -Wextra   -c -o EmployeeRecord.o EmployeeRecord.cpp
-clang++ -g -Wno-everything -Wall -Wextra   -c -o Store.o Store.cpp
-clang++ -g -Wno-everything -Wall -Wextra   -c -o main.o main.cpp
-clang++ -g -Wno-everything -Wall -Wextra  ./CustomerList.o  ./EmployeeDatabase.o  ./EmployeeRecord.o  ./Store.o  ./main.o -o main
+echo -en "\e[0;33mLD \e[0m";
+clang++ -o bin/CS221-Project lib/EmployeeDatabase.o lib/Store.o lib/EmployeeRecord.o lib/CustomerList.o lib/main.o -g3 -DDEBUG=1 -O3 -std=c++11  -fstack-protector-all -Wstack-protector -Wall -Wextra -pedantic  
+echo -en "\n--\nBinary file placed at" \
+		  "\e[0;33mbin/CS221-Project\e[0m\n";
 make: Leaving directory '/workspace/YoungAuthorizedProcesses'
  
