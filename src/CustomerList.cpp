@@ -58,18 +58,18 @@ Store *getLastStore(Store *store) {
 
 Store *sort(Store *store) {
   Store *temp = store;
-  Store* sortedTemp = temp;
-  bool sorted = false;
+  // Store* sortedTemp = temp;
+  // bool sorted = false;
 
-  while(!sorted) {
-    bool swapped = false;
+  // while(!sorted) {
+  //   bool swapped = false;
 
-    while(temp->m_pNext) {
+  //   while(temp->m_pNext) {
 
-    }
-    sortedTemp = temp;
+  //   }
+  //   sortedTemp = temp;
 
-  }
+  // }
 
   return temp;
 }
@@ -89,7 +89,7 @@ Store *sort(Store *store) {
 bool CustomerList::addStore(Store *store) {
   if (store) {
     if (m_pHead) {
-      getStoreTail(this->m_pHead)->m_pNext = store;
+      getStoreTail(m_pHead)->m_pNext = store;
       return true;
     } else {
       this->m_pHead = store;
