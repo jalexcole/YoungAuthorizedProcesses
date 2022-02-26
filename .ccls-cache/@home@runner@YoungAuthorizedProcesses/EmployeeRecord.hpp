@@ -1,6 +1,6 @@
 #pragma once
 
-"CustomerList.hpp"
+#include "CustomerList.hpp"
 
 class EmployeeRecord {
 private:
@@ -22,9 +22,9 @@ public:
     void setID(int);
     void getName(char *fName, char *IName);
     void setName(char *fName, char *IName);
-    void getDept(int &d);
+    int getDept();
     void setDept(int d);
-    void getSalary(double &sal);
+    double getSalary();
     void setSalary(double sal);
 
     void printRecord();

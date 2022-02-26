@@ -1,0 +1,20 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/workspace/YoungAuthorizedProcesses'
+ 
+echo -en "\e[0;33mCC \e[0m";
+clang++ -c src/EmployeeDatabase.cpp -o lib/EmployeeDatabase.o -g3 -DDEBUG=1 -O3 -std=c++11  -fstack-protector-all -Wstack-protector -Wall -Wextra -pedantic  
+ 
+echo -en "\e[0;33mCC \e[0m";
+clang++ -c src/Store.cpp -o lib/Store.o -g3 -DDEBUG=1 -O3 -std=c++11  -fstack-protector-all -Wstack-protector -Wall -Wextra -pedantic  
+echo -en "\e[0;33mCC \e[0m";
+clang++ -c src/EmployeeRecord.cpp -o lib/EmployeeRecord.o -g3 -DDEBUG=1 -O3 -std=c++11  -fstack-protector-all -Wstack-protector -Wall -Wextra -pedantic  
+echo -en "\e[0;33mCC \e[0m";
+clang++ -c src/CustomerList.cpp -o lib/CustomerList.o -g3 -DDEBUG=1 -O3 -std=c++11  -fstack-protector-all -Wstack-protector -Wall -Wextra -pedantic  
+echo -en "\e[0;33mCC \e[0m";
+clang++ -c src/main.cpp -o lib/main.o -g3 -DDEBUG=1 -O3 -std=c++11  -fstack-protector-all -Wstack-protector -Wall -Wextra -pedantic  
+echo -en "\e[0;33mLD \e[0m";
+clang++ -o bin/CS221-Project lib/EmployeeDatabase.o lib/Store.o lib/EmployeeRecord.o lib/CustomerList.o lib/main.o -g3 -DDEBUG=1 -O3 -std=c++11  -fstack-protector-all -Wstack-protector -Wall -Wextra -pedantic  
+echo -en "\n--\nBinary file placed at" \
+		  "\e[0;33mbin/CS221-Project\e[0m\n";
+make: Leaving directory '/workspace/YoungAuthorizedProcesses'
+ 

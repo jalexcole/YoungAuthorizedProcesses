@@ -1,0 +1,10 @@
+{
+    "makefile.extensionOutputFolder": "./.vscode",
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/workspace/YoungAuthorizedProcesses/src",
+            "binaryPath": "/workspace/YoungAuthorizedProcesses/bin/CS221-Project",
+            "binaryArgs": []
+        }
+    ]
+}
