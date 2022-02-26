@@ -5,4 +5,4 @@ RUN sudo apt-get update && sudo apt install -y valgrind cppcheck libcmocka-dev c
 RUN pip3 install lizard flawfinder
 # RUN pip3 install lizard
 # RUN pip3 install flawfinder
-RUN make
+# RUN make

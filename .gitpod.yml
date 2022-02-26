@@ -17,4 +17,3 @@ vscode:
     - llvm-vs-code-extensions.vscode-clangd
     - cschlosser.doxdocgen
     - vadimcn.vscode-lldb
-    - maziac.asm-code-lens
