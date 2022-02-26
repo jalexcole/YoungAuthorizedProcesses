@@ -15,8 +15,6 @@ vscode:
     - ms-vscode.makefile-tools
     - ms-vscode.cmake-tools
     - llvm-vs-code-extensions.vscode-clangd
-    - vscode.cpp
     - cschlosser.doxdocgen
     - vadimcn.vscode-lldb
     - maziac.asm-code-lens
-    - notskm.clang-tidy

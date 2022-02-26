@@ -29,7 +29,6 @@ class EmployeeDatabase {
 
   private:
     void printEmployeeRecords(EmployeeRecord* rt);
-
     void destroyTree(EmployeeRecord* recordTree);
 };
 

@@ -5,37 +5,37 @@
 //--------------------------------------------------------------------------
 #include "Store.h"
 #include <iomanip>
-
+#include <iostream>
 using namespace std;
 
 //------------------------------------------------------
 // Default Constructor
 //------------------------------------------------------
-Store::Store()
-{
-	m_pNext = NULL;
+Store::Store() {
+  m_pNext = nullptr;
+
+  // Adding to  pass linters
+  
 }
 
 //------------------------------------------------------
 // Constructor
 //------------------------------------------------------
-Store::Store(int ID, char *name, char *addr, char *city, char *st, char *zip)
-{
-	m_iStoreID = ID;
-	strcpy(m_sStoreName, name);
-	strcpy(m_sAddress, addr);
-	strcpy(m_sCity, city);
-	strcpy(m_sState, st);
-	strcpy(m_sZip, zip);
-	m_pNext = NULL;
+Store::Store(int ID, char *name, char *addr, char *city, char *st, char *zip) {
+  m_iStoreID = ID;
+  strcpy(m_sStoreName, name);
+  strcpy(m_sAddress, addr);
+  strcpy(m_sCity, city);
+  strcpy(m_sState, st);
+  strcpy(m_sZip, zip);
+  m_pNext = NULL;
 }
 
 //------------------------------------------------------
 // Destructor
 //------------------------------------------------------
-Store::~Store()
-{
-	// Nothing to do here
+Store::~Store() {
+  // Nothing to do here
 }
 
 
@@ -44,9 +44,8 @@ Store::~Store()
 // Args: none
 // Returns: int
 //------------------------------------------------------
-int Store::getStoreID()
-{
-	return m_iStoreID;
+int Store::getStoreID() {
+  return m_iStoreID;
 }
 
 //------------------------------------------------------
@@ -54,9 +53,8 @@ int Store::getStoreID()
 // Args: ID - ID for this store
 // Returns: void
 //------------------------------------------------------
-void Store::setStoreID(int ID)
-{
-	m_iStoreID = ID;
+void Store::setStoreID(int ID) {
+  m_iStoreID = ID;
 }
 
 //------------------------------------------------------
@@ -65,11 +63,10 @@ void Store::setStoreID(int ID)
 // Args: none
 // Returns: Character array, copy of the name string
 //------------------------------------------------------
-char *Store::getStoreName()
-{
-	char *name = new char[strlen(m_sStoreName) + 1];
-	strcpy(name, m_sStoreName);
-	return name;
+char *Store::getStoreName() {
+  char *name = new char[strlen(m_sStoreName) + 1];
+  strcpy(name, m_sStoreName);
+  return name;
 }
 
 //------------------------------------------------------
@@ -77,9 +74,8 @@ char *Store::getStoreName()
 // Args: Pointer to character array holding name
 // Returns: void
 //------------------------------------------------------
-void Store::setStoreName(char *name)
-{
-	strcpy(m_sStoreName, name);
+void Store::setStoreName(char *name) {
+  strcpy(m_sStoreName, name);
 }
 
 //------------------------------------------------------
@@ -88,11 +84,10 @@ void Store::setStoreName(char *name)
 // Args: none
 // Returns: Character array, copy of the address string
 //------------------------------------------------------
-char *Store::getStoreAddress()
-{
-	char *addr = new char[strlen(m_sAddress) + 1];
-	strcpy(addr, m_sAddress);
-	return addr;
+char *Store::getStoreAddress() {
+  char *addr = new char[strlen(m_sAddress) + 1];
+  strcpy(addr, m_sAddress);
+  return addr;
 }
 
 //------------------------------------------------------
@@ -100,9 +95,8 @@ char *Store::getStoreAddress()
 // Args: Pointer to character array holding address
 // Returns: void
 //------------------------------------------------------
-void Store::setStoreAddress(char *addr)
-{
-	strcpy(m_sAddress, addr);
+void Store::setStoreAddress(char *addr) {
+  strcpy(m_sAddress, addr);
 }
 
 //------------------------------------------------------
@@ -111,11 +105,10 @@ void Store::setStoreAddress(char *addr)
 // Args: none
 // Returns: Character array, copy of the city string
 //------------------------------------------------------
-char *Store::getStoreCity()
-{
-	char *city = new char[strlen(m_sCity) + 1];
-	strcpy(city, m_sCity);
-	return city;
+char *Store::getStoreCity() {
+  char *city = new char[strlen(m_sCity) + 1];
+  strcpy(city, m_sCity);
+  return city;
 }
 
 //------------------------------------------------------
@@ -123,9 +116,8 @@ char *Store::getStoreCity()
 // Args: Pointer to character array holding city
 // Returns: void
 //------------------------------------------------------
-void Store::setStoreCity(char *city)
-{
-	strcpy(m_sCity, city);
+void Store::setStoreCity(char *city) {
+  strcpy(m_sCity, city);
 }
 
 //------------------------------------------------------
@@ -134,11 +126,10 @@ void Store::setStoreCity(char *city)
 // Args: none
 // Returns: Character array, copy of the state string
 //------------------------------------------------------
-char *Store::getStoreState()
-{
-	char *state = new char[strlen(m_sState) + 1];
-	strcpy(state, m_sState);
-	return state;
+char *Store::getStoreState() {
+  char *state = new char[strlen(m_sState) + 1];
+  strcpy(state, m_sState);
+  return state;
 }
 
 //------------------------------------------------------
@@ -146,9 +137,8 @@ char *Store::getStoreState()
 // Args: Pointer to character array holding state
 // Returns: void
 //------------------------------------------------------
-void Store::setStoreState(char *state)
-{
-	strcpy(m_sState, state);
+void Store::setStoreState(char *state) {
+  strcpy(m_sState, state);
 }
 
 //------------------------------------------------------
@@ -157,11 +147,10 @@ void Store::setStoreState(char *state)
 // Args: none
 // Returns: Character array, copy of the zip code string
 //------------------------------------------------------
-char *Store::getStoreZip()
-{
-	char *zip = new char[strlen(m_sZip) + 1];
-	strcpy(zip, m_sZip);
-	return zip;
+char *Store::getStoreZip() {
+  char *zip = new char[strlen(m_sZip) + 1];
+  strcpy(zip, m_sZip);
+  return zip;
 }
 
 //------------------------------------------------------
@@ -169,9 +158,8 @@ char *Store::getStoreZip()
 // Args: Pointer to character array holding zip code
 // Returns: void
 //------------------------------------------------------
-void Store::setStoreZip(char *zip)
-{
-	strcpy(m_sZip, zip);
+void Store::setStoreZip(char *zip) {
+  strcpy(m_sZip, zip);
 }
 
 //------------------------------------------------------
@@ -179,14 +167,11 @@ void Store::setStoreZip(char *zip)
 // Args: none
 // Returns: void
 //------------------------------------------------------
-void Store::printStoreInfo()
-{
-	cout << m_iStoreID << setw(20) 
-       << m_sStoreName << setw(15) 
-       << m_sAddress << setw(15) 
-       << m_sCity << ", " 
-       << m_sState << setw(10) 
+void Store::printStoreInfo() {
+  cout << m_iStoreID << setw(20)
+       << m_sStoreName << setw(15)
+       << m_sAddress << setw(15)
+       << m_sCity << ", "
+       << m_sState << setw(10)
        << m_sZip << "\n";
 }
-
-

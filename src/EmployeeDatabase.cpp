@@ -256,7 +256,6 @@ void EmployeeDatabase::printEmployeeRecords(EmployeeRecord *record) {
 // Build the database
 //-----------------------------------------------------
 bool EmployeeDatabase::buildDatabase(const char *dataFile) {
-  std::cout << "Test: Starting To Build Databas" << std::endl;
   bool OK = true;
   int numEmp, id, dept, numStores, sID;
   double sal;
@@ -272,7 +271,6 @@ bool EmployeeDatabase::buildDatabase(const char *dataFile) {
   char sCity[32];
   char sZip[12];
 
-  std::cout << "Test: Attempting to Open File" << std::endl;
   inFile.open(dataFile, ifstream::in);
   if (!inFile.is_open()) {
     // inFile.is_open() returns false if the file could not be found or
@@ -326,15 +324,11 @@ bool EmployeeDatabase::buildDatabase(const char *dataFile) {
       // Read the store zip
       getNextLine(sZip, 11);
       // Create a new Store object
-      std::cout << "Test: Generating Stores :" << std::endl; // for debugging
+      
       theStore = new Store(sID, sName, sAddr, sCity, sSt, sZip);
       
-      std::cout << "EmployeeDatabase::buildDataBase() adding new Store to list" << std::endl;
       theStore->printStoreInfo();
       theList->addStore(theStore);
-
-      std::cout << "EmoloyeeDatabase::buildDatabase() printing store info" << std::endl;
-      theList->printStoresInfo(); // For Debugging
     }
     cout.flush();
     std::cout << "Adding Employee to Employee database" << std::endl;
@@ -351,7 +345,6 @@ bool EmployeeDatabase::buildDatabase(const char *dataFile) {
 // Used by permission
 //--------------------------------------------
 bool EmployeeDatabase::getNextLine(char *line, int lineLen) {
-  std::cout << "Test: Getting Next Line" << std::endl;
   int done = false;
   while (!done) {
     inFile.getline(line, 128);

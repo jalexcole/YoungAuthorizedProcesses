@@ -4,19 +4,28 @@
 #include <cstddef>
 
 /**
- * @brief Construct a new Customer List:: Customer List object
+ * Construct a new Customer List:: Customer List object
  *
  */
 CustomerList::CustomerList() {
-  std::cout << "CustomerList::CustomerList()" << std::endl;
   CustomerList::m_pHead = nullptr;
 }
 
 /**
- * @brief Destroy the Customer List:: Customer List object
- *
+ * Destroy the Customer List:: Customer List object
+ * 
  */
-CustomerList::~CustomerList() { m_pHead = nullptr; }
+CustomerList::~CustomerList() {
+  Store* temp = m_pHead;
+
+  while (m_pHead) {
+    while(temp->m_pNext) {
+      temp = temp->m_pNext;
+    }
+    delete temp;
+    temp = m_pHead;
+  }
+}
 
 /**
  * @brief Get the Last object
@@ -24,123 +33,18 @@ CustomerList::~CustomerList() { m_pHead = nullptr; }
  * @param store
  * @return Store*
  */
-Store* getStoreTail(Store *store) {
+Store *getStoreTail(Store *store) {
 
-  std::cout << "Getting tail of store list" << std::endl;
-  if (store == nullptr) {
-    std::cout << "store is a nullptr" << std::endl;
+  if (store) {
     return nullptr;
-  } else if (store->m_pNext == nullptr) {
-    std::cout << "Store is a single unit" << std::endl;
-    store->printStoreInfo();
-    return store;
-  } else {
-    std::cout << "Entering Recursion" << std::endl;
+  } 
+  if (store->m_pNext) {
     return getStoreTail(store->m_pNext);
-  }
-
-  // while (store->m_pNext != nullptr) {
-  //   store = store->m_pNext;
-  // }
-  // return store;
-}
-
-bool storeSingle(Store *store) {
-  if (store == nullptr) {
-    return false;
   } else {
-    return store->m_pNext == nullptr;
+    return store;
   }
 }
 
-int storeListSize(Store *store) {
-  // find the size of the store paramater;
-  int storeSize = 0;
-
-  if (store == nullptr) {
-    return false;
-  } else if (store->m_pNext == nullptr) {
-    storeSize++;
-  } else {
-    Store *temp = store;
-    while (temp->m_pNext != nullptr) {
-      storeSize++;
-      temp = temp->m_pNext;
-    }
-  }
-  return storeSize;
-}
-
-/**
- * @brief Swaps Stores for sorting
- *
- * @param x
- * @param y
- */
-void swap(Store *x, Store *y) {
-  Store* temp = x;
-  x = y;
-  y = temp;
-}
-
-Store **storeListToArray(Store *store) {
-  int size = storeListSize(store);
-
-  Store *storeArray[size];
-  Store *temp = store;
-  for (int i = 0; i < size; i++) {
-    storeArray[i] = temp;
-    temp = temp->m_pNext;
-  }
-
-  return storeArray;
-}
-
-Store *storeArrayToList(Store **storeArray) {
-  int size = sizeof(storeArray) / sizeof(storeArray[0]);
-
-  Store *head = storeArray[0];
-  Store *temp = head;
-
-  for (int i = 1; i < size; i++) {
-    temp = temp->m_pNext;
-    temp = storeArray[i];
-  }
-
-  return head;
-}
-
-/**
- * @brief Sorts the List of stores with a bubble sort
- *
- * @param store
- * @return true
- * @return false
- */
-bool sortListByID(Store *store) {
-  std::cout << "CustomerList: Sorting list" << std::endl;
-  // Do nothing if the store is of size one
-  if (storeSingle(store)) {
-    return true;
-  }
-
-  bool swapped = false;
-  Store **storeArray = storeListToArray(store);
-  for (int i = 0; i < storeListSize(store) - 1; i++) {
-    swapped = false;
-    for (int j = 0; j < storeListSize(store) - i - j; j++) {
-      if (storeArray[j]->getStoreID() > storeArray[j + 1]->getStoreID()) {
-        swap(storeArray[j], storeArray[j + 1]);
-        swapped = true;
-      }
-    }
-    if (!swapped) {
-      store = storeArrayToList(storeArray);
-      return true;
-    }
-  }
-  return false;
-}
 
 Store *getLastStore(Store *store) {
   Store *temp = store;
@@ -152,9 +56,22 @@ Store *getLastStore(Store *store) {
   return temp;
 }
 
-Store* sort(Store *store) {
-  
-  return nullptr;
+Store *sort(Store *store) {
+  Store *temp = store;
+  Store* sortedTemp = temp;
+  bool sorted = false;
+
+  while(!sorted) {
+    bool swapped = false;
+
+    while(temp->m_pNext) {
+
+    }
+    sortedTemp = temp;
+
+  }
+
+  return temp;
 }
 
 /**
@@ -220,11 +137,11 @@ Store *CustomerList::removeStore(int ID) {
  * @return Store*
  */
 Store *CustomerList::getStore(int ID) {
-  if (m_pHead == nullptr) {
+  if (!m_pHead) {
     return nullptr;
   }
 
-  Store* temp = m_pHead;
+  Store *temp = m_pHead;
 
   while (temp->m_pNext) {
     if (temp->getStoreID() == ID) {
@@ -237,7 +154,7 @@ Store *CustomerList::getStore(int ID) {
 }
 
 /**
- * @brief updates a store based on ID with selected information.
+ * Updates a store based on ID with selected information.
  *
  * @param ID
  * @param name
@@ -248,8 +165,7 @@ Store *CustomerList::getStore(int ID) {
  * @return true
  * @return false
  */
-bool CustomerList::updateStore(int ID, char *name, char *address, char *city,
-                               char *state, char *zip) {
+bool CustomerList::updateStore(int ID, char *name, char *address, char *city, char *state, char *zip) {
   Store *store = getStore(ID);
   if (store == nullptr) {
     return false;
@@ -265,13 +181,10 @@ bool CustomerList::updateStore(int ID, char *name, char *address, char *city,
 }
 
 void CustomerList::printStoresInfo() {
-  std::cout << "Printing Store Info" << std::endl;
   Store *temp = m_pHead;
 
-  while (temp != nullptr) {
+  while (temp) {
     temp->printStoreInfo();
     temp = temp->m_pNext;
   }
-
-  temp = nullptr;
 }

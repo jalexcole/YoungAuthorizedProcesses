@@ -5,13 +5,16 @@
 /** 
  * @brief A constructor for the employee record class
  */
-EmployeeRecord::EmployeeRecord(void) {
+EmployeeRecord::EmployeeRecord() {
     m_iEmployeeID = 0;
     strcpy(m_sFirstName, "");
     strcpy(m_sLastName, ""); 
     m_iDeptID = 0;
     m_dSalary = 0.0;
     m_pCustomerList = new CustomerList();
+
+    m_pLeft = nullptr;
+    m_pRight = nullptr;
 }
 
 /**
@@ -30,6 +33,10 @@ EmployeeRecord::EmployeeRecord(int _ID, char* _lname, char* _fname, int _dept, d
     strcpy(m_sLastName, _lname); 
     m_iDeptID = _dept;
     m_dSalary = _salary;
+
+    m_pCustomerList = new CustomerList();
+    m_pLeft = nullptr;
+    m_pRight = nullptr;
 }
 
 /**
