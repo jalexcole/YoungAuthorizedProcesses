@@ -33,17 +33,7 @@ CustomerList::~CustomerList() {
  * @param store
  * @return Store*
  */
-Store *getStoreTail(Store *store) {
 
-  if (store) {
-    return nullptr;
-  } 
-  if (store->m_pNext) {
-    return getStoreTail(store->m_pNext);
-  } else {
-    return store;
-  }
-}
 
 
 Store *getLastStore(Store *store) {
@@ -87,9 +77,9 @@ Store *sort(Store *store) {
  * @return false
  */
 bool CustomerList::addStore(Store *store) {
-  if (store) {
+  if (store != nullptr) {
     if (m_pHead) {
-      getStoreTail(m_pHead)->m_pNext = store;
+      getLastStore(m_pHead)->m_pNext = store;
       return true;
     } else {
       this->m_pHead = store;
