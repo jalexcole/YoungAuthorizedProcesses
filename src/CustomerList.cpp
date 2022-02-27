@@ -59,7 +59,7 @@ Store *sort(Store *store) {
     index = index->m_pNext;
   }
   
-  Store** stores = (Store**) malloc(sizeof(size));
+  Store** stores = (Store**) malloc(size * sizeof(Store*));
   
   for (int i = 0; i < size; i++) {
     stores[i] = temp;
