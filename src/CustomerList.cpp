@@ -3,6 +3,9 @@
 
 #include <cstddef>
 
+#include <memory>
+#include <list>
+
 /**
  * Construct a new Customer List:: Customer List object
  *
@@ -33,35 +36,69 @@ CustomerList::~CustomerList() {
  * @param store
  * @return Store*
  */
-
-
-
 Store *getLastStore(Store *store) {
   Store *temp = store;
 
-  while (temp->m_pNext != nullptr) {
+  while (temp->m_pNext) {
     temp = temp->m_pNext;
   }
 
   return temp;
 }
 
+
+
 Store *sort(Store *store) {
   Store *temp = store;
-  // Store* sortedTemp = temp;
-  // bool sorted = false;
+  
+  int size = 0;
 
-  // while(!sorted) {
-  //   bool swapped = false;
+  Store* index = store;
+  while(index->m_pNext) {
+    size++;
+    index = index->m_pNext;
+  }
+  
+  Store** stores = (Store**) malloc(sizeof(size));
+  
+  for (int i = 0; i < size; i++) {
+    stores[i] = temp;
+    temp = temp->m_pNext;
+  }
 
-  //   while(temp->m_pNext) {
+  for (int i = 0; i < size; i++) {
+    stores[i]->m_pNext = nullptr;
+  }
 
-  //   }
-  //   sortedTemp = temp;
+  bool sorted = false;
+  // bool swapped;
 
-  // }
+  while (!sorted) {
+    bool swapped = false;
+    for (int i = 0; i < size; i++) {
+      if (i + 1 != size) {
+        if (stores[i]->getStoreID() > stores[i+1]->getStoreID()) {
+          Store* x = stores[i];
+          Store* y = stores[i+1];
+          stores[i] = y;
+          stores[i+1] = x;
+          swapped = true;
+        }
+      }
+    }
+    if (!swapped) {
+      sorted = true;
+    }
 
-  return temp;
+  }
+  Store* sortedHead = stores[0];
+  Store* tempSorted = sortedHead;
+  for (int i = 1; i < size; i++) {
+    tempSorted->m_pNext = stores[i];
+    tempSorted = tempSorted->m_pNext;
+  }
+  free(stores);
+  return sortedHead;
 }
 
 /**
@@ -80,6 +117,8 @@ bool CustomerList::addStore(Store *store) {
   if (store != nullptr) {
     if (m_pHead) {
       getLastStore(m_pHead)->m_pNext = store;
+      m_pHead = sort(m_pHead);
+      // this->printStoresInfo();
       return true;
     } else {
       this->m_pHead = store;
@@ -173,7 +212,7 @@ bool CustomerList::updateStore(int ID, char *name, char *address, char *city, ch
 void CustomerList::printStoresInfo() {
   Store *temp = m_pHead;
 
-  while (temp) {
+  while (temp->m_pNext) {
     temp->printStoreInfo();
     temp = temp->m_pNext;
   }

@@ -246,6 +246,7 @@ void EmployeeDatabase::printEmployeeRecords(EmployeeRecord *record) {
   while (!employees->empty()) {
     EmployeeRecord *employeeFromList = employees->front();
     employeeFromList->printRecord();
+    employeeFromList->getCustomerList()->printStoresInfo();
     employees->pop_front();
   }
 

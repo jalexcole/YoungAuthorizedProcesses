@@ -102,7 +102,9 @@ void testEmployeeDatabase(void) {
   std::string dataFile = "Program3Data.txt";
   unique_ptr<EmployeeDatabase> employeeDatabase(new EmployeeDatabase());
   employeeDatabase->buildDatabase(dataFile.c_str());
-  // employeeDatabase->printEmployeeDatabase();
+
+  std::cout <<"Printing Employee Database" << std::endl;
+  employeeDatabase->printEmployeeDatabase();
   // employeeDatabase->getEmployee(0)->printRecord();
   
 }
